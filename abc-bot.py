@@ -142,7 +142,6 @@ def analyze_request_data1(driver, message_data):
 
         botmsg = ''.join([botmsg1,botmsg2,botmsg3,botmsg4]) ################### [3.2]
         asyncio.run(run_bot(botmsg, CHAT_ID))
-        print(TELEGRAM_BOT_TOKEN, CHAT_ID) ############### DELME
         print(botmsg3,botmsg4) ############## DELME
 
     except Exception as e:
