@@ -2,7 +2,7 @@ name: Run Selenium Script
 
 on:
   workflow_dispatch:
-#on: [push]
+#on: [push]  # Commit changes하면 워크플로우가 바로 실행
 #on:
 #  schedule:
 #    - cron: '0 23 * * *'   # KST 08:00
