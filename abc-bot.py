@@ -39,6 +39,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import json
 import random
 import time
+import os
 
 from telegram import Bot
 import asyncio
@@ -46,8 +47,8 @@ import asyncio
 from random_user_agent.params import SoftwareName, HardwareType, OperatingSystem
 from random_user_agent.user_agent import UserAgent
 
-TELEGRAM_BOT_TOKEN = '5425064348:AAHU1vEQwme4noQt67V0hpHKppd3dOEFQeY'
-CHAT_ID = '-4775855355'
+TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
+CHAT_ID = os.environ["CHAT_ID"]
 
 # Define bot
 bot = Bot(token=TELEGRAM_BOT_TOKEN)
