@@ -104,6 +104,7 @@ def capture_and_analyze_network_logs(analyze_func):
                 request_url = message_data.get("params", {}).get("response", {}).get("url", "")
                 print("55555555555555555555") #################### DELME
                 if "abcmart.a-rt.com/product/info?prdtNo" in request_url:
+                    print("6666666666666666666666") #################### DELME    
                     analyze_func(driver, message_data)
                     print("2222222222222222222222") #################### DELME
     finally:
