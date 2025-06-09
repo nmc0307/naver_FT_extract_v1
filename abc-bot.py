@@ -89,6 +89,7 @@ def capture_and_analyze_network_logs(analyze_func):
     )
 
     try:
+        print("4444444444444444444444444444") #################### DELME
         # URL 열기
         driver.get(prod_url)
 
@@ -101,6 +102,7 @@ def capture_and_analyze_network_logs(analyze_func):
             message_data = message.get("message", {})
             if message_data.get("method") == "Network.responseReceived":
                 request_url = message_data.get("params", {}).get("response", {}).get("url", "")
+                print("55555555555555555555") #################### DELME
                 if "abcmart.a-rt.com/product/info?prdtNo" in request_url:
                     analyze_func(driver, message_data)
                     print("2222222222222222222222") #################### DELME
