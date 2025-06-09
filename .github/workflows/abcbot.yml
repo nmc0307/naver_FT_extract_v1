@@ -1,9 +1,8 @@
 name: Run Selenium Script
 
-on:
-  workflow_dispatch:       # Actions 탭에서 직접 [Run workflow] 버튼을 눌러야만 실행
 #on: [push]                # Commit changes하면 워크플로우가 바로 실행
 on:
+  workflow_dispatch:       # Actions 탭에서 직접 [Run workflow] 버튼을 눌러야만 실행
   schedule:
     - cron: '0 23 * * *'   # KST 08:00
     - cron: '0 2 * * *'    # KST 11:00
