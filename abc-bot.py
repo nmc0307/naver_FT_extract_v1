@@ -40,6 +40,7 @@ import json
 import random
 import time
 import os
+import datetime
 
 from telegram import Bot
 import asyncio
@@ -170,10 +171,12 @@ if __name__ == "__main__":
     prod_url = "https://abcmart.a-rt.com/product/new?prdtNo=1010074737&page=1"
     capture_and_analyze_network_logs(analyze_request_data1)
     random_delay()
-
+    print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        
     prod_url = "https://abcmart.a-rt.com/product/new?prdtNo=1010074737&page=1"
     capture_and_analyze_network_logs(analyze_request_data1)
     random_delay()
+    print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     
     #capture_and_analyze_network_logs(analyze_request_data2)    
     #capture_and_analyze_network_logs(analyze_request_data3)
