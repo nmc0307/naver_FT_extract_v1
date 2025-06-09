@@ -123,11 +123,8 @@ def analyze_request_data1(driver, message_data):
         displayDiscountRate = response_data.get("displayDiscountRate", "N/A")
 
         # 맨 윗줄에 출력
-        botmsg1 = "95000 by ??/?? [1]\n" ################### [2]
-        print("95000 by ??/??**")
+        botmsg1 = "103,000 by ??/?? [1]\n" ################### [2]
         botmsg2 = f"{displayProductPrice},{displayDiscountRate}%,{styleInfo}-{prdtColorInfo}\n{engPrdtName}\n"  ###################
-        print(f"engPrdtName: {engPrdtName}, styleInfo: {styleInfo}, prdtColorInfo: {prdtColorInfo}, "
-              f"displayProductPrice: {displayProductPrice}, displayDiscountRate: {displayDiscountRate}")
 
         # productOption 필드에서 원하는 데이터 필터링
         product_options = response_data.get("productOption", [])
@@ -136,22 +133,16 @@ def analyze_request_data1(driver, message_data):
             optnName = option.get("optnName")
             orderDailydlvyPsbltQty = option.get("orderDailydlvyPsbltQty")
             if prdtNo and optnName:
-                if optnName in ["235"]:    ################### [3.1]
+                if optnName in ["230"]:    ################### [3.1]
                     botmsg3 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
                     print(f"prdtNo: {prdtNo}, optnName: {optnName}, orderDailydlvyPsbltQty: {orderDailydlvyPsbltQty} **")
                 elif optnName in ["240"]:  ###################
                     botmsg4 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
                     print(f"prdtNo: {prdtNo}, optnName: {optnName}, orderDailydlvyPsbltQty: {orderDailydlvyPsbltQty} **")
-                elif optnName in ["245"]:  ###################
-                    botmsg5 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
-                    print(f"prdtNo: {prdtNo}, optnName: {optnName}, orderDailydlvyPsbltQty: {orderDailydlvyPsbltQty} **")
-                elif optnName in ["250"]:  ###################
-                    botmsg6 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
-                    print(f"prdtNo: {prdtNo}, optnName: {optnName}, orderDailydlvyPsbltQty: {orderDailydlvyPsbltQty} **")
                 else:
                     print(f"prdtNo: {prdtNo}, optnName: {optnName}, orderDailydlvyPsbltQty: {orderDailydlvyPsbltQty}")
 
-        botmsg = ''.join([botmsg1,botmsg2,botmsg3,botmsg4,botmsg5,botmsg6]) ################### [3.2]
+        botmsg = ''.join([botmsg1,botmsg2,botmsg3,botmsg4]) ################### [3.2]
         asyncio.run(run_bot(botmsg, CHAT_ID))
 
     except Exception as e:
@@ -168,12 +159,7 @@ def analyze_request_data3(driver, message_data):
     # ... (다른 분석 방식)
 
 if __name__ == "__main__":
-    prod_url = "https://abcmart.a-rt.com/product/new?prdtNo=1010074737&page=1"
-    capture_and_analyze_network_logs(analyze_request_data1)
-    random_delay()
-    print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        
-    prod_url = "https://abcmart.a-rt.com/product/new?prdtNo=1010074737&page=1"
+    prod_url = "https://grandstage.a-rt.com/product/new?prdtNo=1020105566&page=1"  ### 
     capture_and_analyze_network_logs(analyze_request_data1)
     random_delay()
     print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
