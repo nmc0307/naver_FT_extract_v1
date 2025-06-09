@@ -123,7 +123,7 @@ def analyze_request_data1(driver, message_data):
         displayDiscountRate = response_data.get("displayDiscountRate", "N/A")
 
         # 맨 윗줄에 출력
-        botmsg1 = "103,000 by ??/?? [1]\n" ################### [2]
+        botmsg1 = "103000 by ??/?? [1]\n" ################### [2]
         botmsg2 = f"{displayProductPrice},{displayDiscountRate}%,{styleInfo}-{prdtColorInfo}\n{engPrdtName}\n"  ###################
 
         # productOption 필드에서 원하는 데이터 필터링
@@ -135,10 +135,8 @@ def analyze_request_data1(driver, message_data):
             if prdtNo and optnName:
                 if optnName in ["230"]:    ################### [3.1]
                     botmsg3 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
-                    print(f"prdtNo: {prdtNo}, optnName: {optnName}, orderDailydlvyPsbltQty: {orderDailydlvyPsbltQty} **")
                 elif optnName in ["240"]:  ###################
                     botmsg4 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
-                    print(f"prdtNo: {prdtNo}, optnName: {optnName}, orderDailydlvyPsbltQty: {orderDailydlvyPsbltQty} **")
                 else:
                     print(f"prdtNo: {prdtNo}, optnName: {optnName}, orderDailydlvyPsbltQty: {orderDailydlvyPsbltQty}")
 
@@ -159,6 +157,7 @@ def analyze_request_data3(driver, message_data):
     # ... (다른 분석 방식)
 
 if __name__ == "__main__":
+    print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     prod_url = "https://grandstage.a-rt.com/product/new?prdtNo=1020105566&page=1"  ### 
     capture_and_analyze_network_logs(analyze_request_data1)
     random_delay()
