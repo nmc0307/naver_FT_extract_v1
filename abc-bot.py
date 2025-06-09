@@ -102,7 +102,7 @@ def capture_and_analyze_network_logs(analyze_func):
             message_data = message.get("message", {})
             if message_data.get("method") == "Network.responseReceived":
                 request_url = message_data.get("params", {}).get("response", {}).get("url", "")
-                print("55555555555555555555") #################### DELME
+                print(request_url) ###################################################### DELME
                 if "abcmart.a-rt.com/product/info?prdtNo" in request_url:
                     print("6666666666666666666666") #################### DELME    
                     analyze_func(driver, message_data)
