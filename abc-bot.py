@@ -102,6 +102,7 @@ def capture_and_analyze_network_logs(analyze_func):
                 request_url = message_data.get("params", {}).get("response", {}).get("url", "")
                 if "abcmart.a-rt.com/product/info?prdtNo" in request_url:
                     analyze_func(driver, message_data)
+                    print("2222222222222222222222") #################### DELME
     finally:
         # WebDriver 종료
         driver.quit()
@@ -109,6 +110,7 @@ def capture_and_analyze_network_logs(analyze_func):
 # 예시 분석 함수 1
 def analyze_request_data1(driver, message_data):
     try:
+        print("11111111111111111111111") #################### DELME
         # 요청의 JSON 응답을 가져옴
         response_body = driver.execute_cdp_cmd("Network.getResponseBody", {
             "requestId": message_data["params"]["requestId"]
