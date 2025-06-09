@@ -69,6 +69,7 @@ def random_delay(min_seconds=5, max_seconds=10):
 
 # Chrome DevTools Protocol을 사용해 네트워크 로그 캡처 및 분석
 def capture_and_analyze_network_logs(analyze_func):
+    print("33333333333333333333333") #################### DELME
     # ChromeOptions 설정
     options = Options()
     options.add_argument("--headless=new")
