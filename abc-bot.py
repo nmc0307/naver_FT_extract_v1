@@ -181,6 +181,58 @@ def analyze_request_data2(driver, message_data):
     except Exception as e:
         print(f"Error analyzing request: {e}")
 
+# 예시 분석 함수 3
+def analyze_request_data3(driver, message_data):
+    try:
+        # 요청의 JSON 응답을 가져옴
+        response_body = driver.execute_cdp_cmd("Network.getResponseBody", {
+            "requestId": message_data["params"]["requestId"]
+        })
+        response_data = json.loads(response_body["body"])
+            
+        # 맨 위에 출력할 항목들
+        engPrdtName = response_data.get("engPrdtName", "N/A")
+        styleInfo = response_data.get("styleInfo", "N/A")
+        prdtColorInfo = response_data.get("prdtColorInfo", "N/A")
+        displayProductPrice = response_data.get("displayProductPrice", "N/A")
+        displayDiscountRate = response_data.get("displayDiscountRate", "N/A")
+
+        # 맨 윗줄에 출력
+        botmsg1 = "88000 by ??/?? [1]\n" ################### [2]
+        botmsg2 = f"{displayProductPrice},{displayDiscountRate}%,{styleInfo}-{prdtColorInfo}\n{engPrdtName}\n"  ###################
+
+        # productOption 필드에서 원하는 데이터 필터링
+        product_options = response_data.get("productOption", [])
+        for option in product_options:
+            prdtNo = option.get("prdtNo")
+            optnName = option.get("optnName")
+            orderDailydlvyPsbltQty = option.get("orderDailydlvyPsbltQty")
+            if prdtNo and optnName:
+                if optnName in ["220"]:    ################### [3.1]
+                    botmsg3 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
+                if optnName in ["225"]:    ################### [3.1]
+                    botmsg4 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
+                if optnName in ["230"]:    ################### [3.1]
+                    botmsg5 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
+                if optnName in ["235"]:    ################### [3.1]
+                    botmsg6 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
+                if optnName in ["240"]:    ################### [3.1]
+                    botmsg7 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
+                if optnName in ["245"]:    ################### [3.1]
+                    botmsg8 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
+                if optnName in ["250"]:    ################### [3.1]
+                    botmsg9 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
+                if optnName in ["255"]:    ################### [3.1]
+                    botmsg10 = (f"{prdtNo},{optnName}: {orderDailydlvyPsbltQty}\n")
+                else:
+                    print(f"prdtNo: {prdtNo}, optnName: {optnName}, orderDailydlvyPsbltQty: {orderDailydlvyPsbltQty}")
+        botmsg = ''.join([botmsg1,botmsg2,botmsg3,botmsg4,botmsg5,botmsg6,botmsg7,botmsg8,botmsg9,botmsg10]) ################### [3.2]
+        asyncio.run(run_bot(botmsg, CHAT_ID))
+    except Exception as e:
+        print(f"Error analyzing request: {e}")
+
+
+
 if __name__ == "__main__":
     prod_url = "https://grandstage.a-rt.com/product/new?prdtNo=1020105566&page=1" ### 
     capture_and_analyze_network_logs(analyze_request_data1) ###
@@ -189,3 +241,9 @@ if __name__ == "__main__":
     prod_url = "https://grandstage.a-rt.com/product/new?prdtNo=1020112354&page=1" ### 
     capture_and_analyze_network_logs(analyze_request_data2) ###
     random_delay()
+
+    prod_url = "https://grandstage.a-rt.com/product/new?prdtNo=1020112191&page=1" ### 
+    capture_and_analyze_network_logs(analyze_request_data3) ###
+    random_delay()
+
+
