@@ -108,7 +108,7 @@ def capture_and_analyze_network_logs(analyze_func):
         driver.quit()
 
 # 예시 분석 함수 1
-def analyze_request_data1(driver, message_data):
+def analyze_request_data1(driver, message_data):  ### 🟥
     try:
         # 요청의 JSON 응답을 가져옴
         response_body = driver.execute_cdp_cmd("Network.getResponseBody", {
@@ -125,7 +125,7 @@ def analyze_request_data1(driver, message_data):
 
         # 맨 윗줄에 출력
         botmsg1 = "103000 by ??/?? [스탁엑스1]\n" ### 🟥 [2]
-        botmsg2 = f"{displayProductPrice},{displayDiscountRate}%,{styleInfo}-{prdtColorInfo}\n{engPrdtName}\n"  ###################
+        botmsg2 = f"{displayProductPrice},{displayDiscountRate}%,{styleInfo}-{prdtColorInfo}\n{engPrdtName}\n"  ### 🟥
 
         # productOption 필드에서 원하는 데이터 필터링
         product_options = response_data.get("productOption", [])
@@ -146,7 +146,7 @@ def analyze_request_data1(driver, message_data):
         print(f"Error analyzing request: {e}")
 
 # 예시 분석 함수 2
-def analyze_request_data2(driver, message_data):
+def analyze_request_data2(driver, message_data):  ### 🟥
     try:
         # 요청의 JSON 응답을 가져옴
         response_body = driver.execute_cdp_cmd("Network.getResponseBody", {
@@ -182,7 +182,7 @@ def analyze_request_data2(driver, message_data):
         print(f"Error analyzing request: {e}")
 
 # 예시 분석 함수 3
-def analyze_request_data3(driver, message_data):
+def analyze_request_data3(driver, message_data):  ### 🟥
     try:
         # 요청의 JSON 응답을 가져옴
         response_body = driver.execute_cdp_cmd("Network.getResponseBody", {
@@ -232,7 +232,7 @@ def analyze_request_data3(driver, message_data):
         print(f"Error analyzing request: {e}")
 
 # 예시 분석 함수 4
-def analyze_request_data4(driver, message_data):
+def analyze_request_data4(driver, message_data):  ### 🟥
     try:
         # 요청의 JSON 응답을 가져옴
         response_body = driver.execute_cdp_cmd("Network.getResponseBody", {
