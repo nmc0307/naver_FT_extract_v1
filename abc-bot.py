@@ -124,7 +124,7 @@ def analyze_request_data1(driver, message_data):
         displayDiscountRate = response_data.get("displayDiscountRate", "N/A")
 
         # 맨 윗줄에 출력
-        botmsg1 = "103000 by ??/?? [1]\n" ################### [2]
+        botmsg1 = "103000 by ??/?? [스탁엑스1]\n" ################### [2]
         botmsg2 = f"{displayProductPrice},{displayDiscountRate}%,{styleInfo}-{prdtColorInfo}\n{engPrdtName}\n"  ###################
 
         # productOption 필드에서 원하는 데이터 필터링
@@ -162,7 +162,7 @@ def analyze_request_data2(driver, message_data):
         displayDiscountRate = response_data.get("displayDiscountRate", "N/A")
 
         # 맨 윗줄에 출력
-        botmsg1 = "88000 by ??/?? [2]\n" ################### [2]
+        botmsg1 = "88000 by ??/?? [스탁엑스2]\n" ################### [2]
         botmsg2 = f"{displayProductPrice},{displayDiscountRate}%,{styleInfo}-{prdtColorInfo}\n{engPrdtName}\n"  ###################
 
         # productOption 필드에서 원하는 데이터 필터링
@@ -198,7 +198,7 @@ def analyze_request_data3(driver, message_data):
         displayDiscountRate = response_data.get("displayDiscountRate", "N/A")
 
         # 맨 윗줄에 출력
-        botmsg1 = "88000 by ??/?? [3]\n" ################### [2]
+        botmsg1 = "88000 by ??/?? [스탁엑스3]\n" ################### [2]
         botmsg2 = f"{displayProductPrice},{displayDiscountRate}%,{styleInfo}-{prdtColorInfo}\n{engPrdtName}\n"  ###################
 
         # productOption 필드에서 원하는 데이터 필터링
@@ -248,7 +248,7 @@ def analyze_request_data4(driver, message_data):
         displayDiscountRate = response_data.get("displayDiscountRate", "N/A")
 
         # 맨 윗줄에 출력
-        botmsg1 = "215000 by ??/?? [4]\n" ################### [2]
+        botmsg1 = "215000 by ??/?? [스탁엑스4]\n" ################### [2]
         botmsg2 = f"{displayProductPrice},{displayDiscountRate}%,{styleInfo}-{prdtColorInfo}\n{engPrdtName}\n"  ###################
 
         # productOption 필드에서 원하는 데이터 필터링
