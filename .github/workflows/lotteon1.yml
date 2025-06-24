@@ -23,7 +23,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-        run: python abc-bot.py
+        run: python lotteon1.py
 
       - name: Upload results
         uses: actions/upload-artifact@v3
