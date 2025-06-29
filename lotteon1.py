@@ -26,8 +26,11 @@ try:
     )
 
     product_titles = [elem.text for elem in title_elements]
-    for title in product_titles:
-        print(title)
+
+    # output.txt 파일에 저장
+    with open('output.txt', 'w', encoding='utf-8') as f:
+        for title in product_titles:
+            f.write(title + '\n')
 
 finally:
     driver.quit()
