@@ -19,7 +19,9 @@ driver = webdriver.Chrome(options=chrome_options)
 def extract_article_number(title):
     """타이틀에서 아티클 넘버 추출"""
     # 정규식 패턴: 대문자/숫자 + 하이픈 + 숫자
-    pattern = r'[A-Z0-9]+-\d+'
+    # pattern = r'[A-Z0-9]+-\d+'
+    # 수정된 정규식 (더 포괄적인 패턴)
+    pattern = r'[A-Z0-9]+[-_][A-Z0-9]+'
     match = re.search(pattern, title)
     return match.group(0) if match else "NOT_FOUND"
 
