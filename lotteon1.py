@@ -38,7 +38,7 @@ try:
     
     # 페이지 로딩 대기 (상세한 상태 출력)
     print("[진행] 상품 목록 로딩 대기 중...")
-    WebDriverWait(driver, 20).until(
+    WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "li.s-goods-grid-item"))
     )
     load_time = time.time() - start_time
