@@ -3,9 +3,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
-import os
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 import re
+import os
 
 # Chrome 옵션 설정 (헤드리스 모드)
 chrome_options = Options()
@@ -41,19 +41,16 @@ try:
             
             # 제목에서 아티클 추출
             title_elem = li_element.find_element(By.CSS_SELECTOR, "div.s-goods__info div.s-goods-title")
-            print(title_elem) #####################################
             title = title_elem.text.strip()
             article = extract_article_number(title) if title else "NOT_FOUND"
             
             # 가격 추출
             try:
                 price_selector = f"#{li_element.get_attribute('id')} > div > div.s-goods__column > div > strong > span.s-goods-price__number"
-                print(price_selector) #####################################
                 price_elem = li_element.find_element(By.CSS_SELECTOR, price_selector)
-                print(price_elem) #####################################
                 price = price_elem.text.strip()
-                print(price) #####################################
-            except:
+            except Exception as e:
+                print(f"가격 추출 실패: {str(e)}")
                 price = "PRICE_NOT_FOUND"
             
             # 아티클과 가격을 함께 저장
@@ -61,8 +58,8 @@ try:
             output_lines.append(output_line)
             print(f"추출 완료: {output_line}")  # 콘솔 출력
             
-        except Exception as e:
-            print(f"제품 {i} 처리 중 오류: {str(e)}")
+        except (NoSuchElementException, TimeoutException) as e:
+            print(f"제품 {i}에서 오류 발생: {str(e)}")
             continue
 
     # 파일 저장
