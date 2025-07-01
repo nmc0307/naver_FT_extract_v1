@@ -47,8 +47,11 @@ try:
             # 가격 추출
             try:
                 price_selector = f"#{li_element.get_attribute('id')} > div > div.s-goods__column > div > strong > span.s-goods-price__number"
+                print(price_selector) #####################################
                 price_elem = li_element.find_element(By.CSS_SELECTOR, price_selector)
+                print(price_elem) #####################################
                 price = price_elem.text.strip()
+                print(price) #####################################
             except:
                 price = "PRICE_NOT_FOUND"
             
