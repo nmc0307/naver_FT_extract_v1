@@ -41,6 +41,7 @@ try:
             
             # 제목에서 아티클 추출
             title_elem = li_element.find_element(By.CSS_SELECTOR, "div.s-goods__info div.s-goods-title")
+            print(title_elem) #####################################
             title = title_elem.text.strip()
             article = extract_article_number(title) if title else "NOT_FOUND"
             
