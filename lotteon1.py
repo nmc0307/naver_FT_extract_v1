@@ -50,6 +50,9 @@ try:
             )
             price = price_elem.text.strip()
             
+            print(title) #############################
+            print(price) #############################
+            
             if title:
                 article = extract_article_number(title)
                 product_data.append((article, price))
