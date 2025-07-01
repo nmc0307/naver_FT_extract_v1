@@ -42,12 +42,11 @@ try:
             # 제목에서 아티클 추출
             title_elem = li_element.find_element(By.CSS_SELECTOR, "div.s-goods__info div.s-goods-title")
             title = title_elem.text.strip()
-            article = extract_article_number(title) if title else "NOT_FOUND"
+            article = extract_article_number(title) if title else "NOT_FOUND"            
             
             # 가격 추출
             try:
-                price_selector = f"#{li_element.get_attribute('id')} > div > div.s-goods__column > div > strong > span.s-goods-price__number"
-                price_elem = li_element.find_element(By.CSS_SELECTOR, price_selector)
+                price_elem = li_element.find_element(By.CSS_SELECTOR, "div.s-goods__column strong span.s-goods-price__number")
                 price = price_elem.text.strip()
             except Exception as e:
                 print(f"가격 추출 실패: {str(e)}")
