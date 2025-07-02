@@ -31,7 +31,7 @@ try:
         "#content > div > section > div.srchResultArea > section.srchResultContentArea > div > div.s-goods-layout.s-goods-layout__grid > div.s-goods-grid.s-goods-grid--col-4 > ul"))
     )
 
-    output_lines = []  # 아티클과 가격을 함께 저장할 리스트
+    output_lines = []  # 아티클, 가격, 링크를 함께 저장할 리스트
 
     for i in range(1, 61):
         li_selector = f"#content > div > section > div.srchResultArea > section.srchResultContentArea > div > div.s-goods-layout.s-goods-layout__grid > div.s-goods-grid.s-goods-grid--col-4 > ul > li:nth-child({i})"
@@ -39,10 +39,22 @@ try:
             li_element = driver.find_element(By.CSS_SELECTOR, li_selector)
             product_id = li_element.get_attribute("id").replace("product-head-", "")
             
+            # a 태그 추출
+            try:
+                anchor = li_element.find_element(By.CSS_SELECTOR, "div.s-goods__info > a.s-goods__anchor")
+                href = anchor.get_attribute("href")
+            except Exception as e:
+                print(f"링크 추출 실패: {str(e)}")
+                href = "LINK_NOT_FOUND"
+
             # 제목에서 아티클 추출
-            title_elem = li_element.find_element(By.CSS_SELECTOR, "div.s-goods__info div.s-goods-title")
-            title = title_elem.text.strip()
-            article = extract_article_number(title) if title else "NOT_FOUND"            
+            try:
+                title_elem = li_element.find_element(By.CSS_SELECTOR, "div.s-goods__info div.s-goods-title")
+                title = title_elem.text.strip()
+                article = extract_article_number(title) if title else "NOT_FOUND"
+            except Exception as e:
+                print(f"타이틀 추출 실패: {str(e)}")
+                article = "NOT_FOUND"
             
             # 가격 추출
             try:
@@ -52,10 +64,10 @@ try:
                 print(f"가격 추출 실패: {str(e)}")
                 price = "PRICE_NOT_FOUND"
             
-            # 아티클과 가격을 함께 저장
-            output_line = f"{article} {price}"
+            # 결과 저장
+            output_line = f"{article} {price} {href}"
             output_lines.append(output_line)
-            print(f"추출 완료: {output_line}")  # 콘솔 출력
+            print(f"추출 완료: {output_line}")
             
         except (NoSuchElementException, TimeoutException) as e:
             print(f"제품 {i}에서 오류 발생: {str(e)}")
@@ -66,7 +78,7 @@ try:
         for line in output_lines:
             f.write(line + '\n')
 
-    print("아티클 번호와 가격 추출 완료! output.txt 파일 저장됨")
+    print("아티클 번호, 가격, 링크 추출 완료! output.txt 파일 저장됨")
 
 finally:
     driver.quit()
