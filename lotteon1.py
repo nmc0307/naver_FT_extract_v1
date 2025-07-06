@@ -49,7 +49,8 @@ def extract_article_number(title):
     return "NOT_FOUND"
 
 try:
-    url = "https://www.lotteon.com/csearch/search/search?render=search&platform=pc&q=%EB%82%98%EC%9D%B4%ED%82%A4&mallId=1"
+    #url = "https://www.lotteon.com/csearch/search/search?render=search&platform=pc&q=%EB%82%98%EC%9D%B4%ED%82%A4&mallId=1"   # 나이키 🟥
+    url = "https://www.lotteon.com/csearch/search/search?render=search&platform=pc&q=descente&mallId=1"                      # descente 🟥
     driver.get(url)
 
     WebDriverWait(driver, 10).until(
