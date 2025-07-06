@@ -26,11 +26,27 @@ chrome_options.add_argument(f"user-agent={random.choice(USER_AGENTS)}")
 
 driver = webdriver.Chrome(options=chrome_options)
 
+import re
+
 def extract_article_number(title):
-    """타이틀에서 아티클 넘버 추출"""    
-    pattern = r'\b(?:[A-Z]{2,}\d{3,6}|[0-9]{5,6})[_\-\s]\d{2,3}\b'
-    match = re.search(pattern, title)
-    return match.group(0) if match else "NOT_FOUND"
+    """타이틀에서 아티클 넘버 추출"""
+    
+    patterns = [
+        r'\b(?:[A-Z]{2,}\d{3,6}|[0-9]{5,6})[_\-\s]\d{2,3}\b',          # 기존 패턴
+        r'\b[A-Z]{2,3}\d{3}[A-Z]{3}\d{2,3}[-_][A-Z0-9]{3,4}\b',        # SQ323LCR92-BLK0
+        r'\b[A-Z]{2,3}\d{3}[A-Z]{3}\d{2,3}\b',                         # SP323LSN73DNVY
+        r'\b[A-Z0-9]{9,14}\b'                                          # 일반 단일 블록
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, title)
+        if match:
+            result = match.group(0)
+            if ' ' in result:
+                result = result.replace(' ', '-')
+            return result
+
+    return "NOT_FOUND"
 
 try:
     url = "https://www.lotteon.com/csearch/search/search?render=search&platform=pc&q=%EB%82%98%EC%9D%B4%ED%82%A4&mallId=1"
