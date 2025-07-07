@@ -8,6 +8,7 @@ import re
 import os
 import random
 import csv
+import time
 
 # 무작위 User-Agent 목록
 USER_AGENTS = [
