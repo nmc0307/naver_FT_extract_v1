@@ -24,7 +24,9 @@ def scroll_down(driver):
 # 상품 아이디 추출
 def extract_products(driver, seen_ids):
     products = []
-    product_elements = driver.find_elements(By.XPATH, '//*[@id="content"]/div/div[2]/div[3]/div[2]/div/div/ul/li')
+    ###🟨 product_elements = driver.find_elements(By.XPATH, '//*[@id="content"]/div/div[2]/div[3]/div[2]/div/div/ul/li')     
+    product_elements = driver.find_elements(By.XPATH, '/html/body/div/div/div[4]/div/div[2]/div[3]/div[2]/div/div/ul')
+
 
     print(product_elements)  ####################################❤🟨
 
