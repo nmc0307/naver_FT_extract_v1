@@ -26,6 +26,8 @@ def extract_products(driver, seen_ids):
     products = []
     product_elements = driver.find_elements(By.XPATH, '//*[@id="content"]/div/div[2]/div[3]/div[2]/div/div/ul/li')
 
+    print(product_elements)  ####################################❤🟨
+
     for li in product_elements:
         try:
             info_div = li.find_element(By.XPATH, './/div[starts-with(@id, "basic_product_card_information_")]')
