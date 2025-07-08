@@ -63,12 +63,11 @@ while True:
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(2)
 
-    items = driver.find_elements(By.CSS_SELECTOR, "ul > li[id^='basic_product_card_information_']")
-
-    print(items) #########################################🟥
+    items = driver.find_elements(By.CSS_SELECTOR, "ul > li[id^='basic_product_card_information_']")    
 
     new_count = 0
     for item in items:
+        print(item) #########################################🟥
         item_id = item.get_attribute("id")
         if not item_id or item_id in seen_ids:
             continue
