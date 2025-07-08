@@ -65,6 +65,8 @@ while True:
 
     items = driver.find_elements(By.CSS_SELECTOR, "ul > li[id^='basic_product_card_information_']")
 
+    print(items) #########################################🟥
+
     new_count = 0
     for item in items:
         item_id = item.get_attribute("id")
