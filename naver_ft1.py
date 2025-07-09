@@ -15,7 +15,7 @@ driver.get(url)
 
 try:
     # __next가 로딩될 때까지 기다림 (최대 10초)
-    element = WebDriverWait(driver, 10).until(
+    element = WebDriverWait(driver, 30).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "#__next > div"))
     )
     print("✅ 추출 성공! 태그명:", element.tag_name)
