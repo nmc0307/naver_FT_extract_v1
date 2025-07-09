@@ -1,25 +1,29 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+import time
 
-url = "https://shopping.naver.com/window/brand-fashion/search?q=DESCENTE&sort=POPULARITY"
+# 프록시 정보
+PROXY = "115.144.113.130:16315"
 
+# Chrome 옵션 설정
 options = Options()
-options.add_argument("--headless")  # 테스트 시 주석 처리해도 좋음
-options.add_argument("--disable-gpu")
+options.add_argument(f'--proxy-server=http://{PROXY}')
+options.add_argument('--headless')  # 시각 디버깅 시에는 이 줄을 주석 처리
+options.add_argument('--disable-gpu')
+options.add_argument('--no-sandbox')
 
+# Chrome WebDriver 실행
 driver = webdriver.Chrome(options=options)
+
+# 테스트할 URL (네이버 쇼핑)
+url = "https://shopping.naver.com/window/brand-fashion/search?q=DESCENTE&sort=POPULARITY"
 driver.get(url)
 
-try:
-    # __next가 로딩될 때까지 기다림 (최대 10초)
-    element = WebDriverWait(driver, 30).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, "#__next > div"))
-    )
-    print("✅ 추출 성공! 태그명:", element.tag_name)
-except Exception as e:
-    print("❌ 추출 실패:", str(e))
-finally:
-    driver.quit()
+# 충분히 로딩 대기
+time.sleep(3)
+
+# 결과 출력
+print("✅ 접근 완료. 페이지 타이틀:", driver.title)
+
+driver.quit()
