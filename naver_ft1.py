@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 import os
 
@@ -24,9 +26,17 @@ def scroll_down(driver):
 # 상품 아이디 추출
 def extract_products(driver, seen_ids):
     products = []
-    ###🟨 product_elements = driver.find_elements(By.XPATH, '//*[@id="content"]/div/div[2]/div[3]/div[2]/div/div/ul/li')     
-    product_elements = driver.find_elements(By.XPATH, '/html/body/div/div/div[4]/div/div[2]/div[3]/div[2]/div/div/ul')
 
+    try:
+        wait = WebDriverWait(driver, 10)
+        # ul 하위의 li 요소들 로드될 때까지 대기
+        ul_element = wait.until(
+            EC.presence_of_element_located((By.XPATH, '/html/body/div/div/div[4]/div/div[2]/div[3]/div[2]/div/div/ul'))
+        )
+        product_elements = ul_element.find_elements(By.TAG_NAME, 'li')
+    except Exception as e:
+        print("상품 요소 대기 중 오류:", e)
+        return products
 
     print(product_elements)  ####################################❤🟨
 
