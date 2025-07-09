@@ -21,7 +21,7 @@ for i in range(2):  # 총 10번 스크롤
 
 # 상품 정보 로딩 기다리기
 try:
-    element = WebDriverWait(driver, 10).until(
+    element = WebDriverWait(driver, 20).until(
         EC.presence_of_element_located((By.XPATH, '//div[starts-with(@id, "basic_product_card_information_")]'))
     )
     print("✅ 로딩된 상품 ID:", element.get_attribute("id"))
